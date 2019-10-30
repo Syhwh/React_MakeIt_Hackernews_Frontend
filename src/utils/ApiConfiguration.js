@@ -1,8 +1,8 @@
 import axios from 'axios';
 
- const PostsApi = axios.create({
+ const hackerNewsApi = axios.create({
   baseURL: 'http://localhost:3001/',
-  timeout: 1000
+  timeout: 5000
 
 });
-export default PostsApi;
+export default hackerNewsApi;

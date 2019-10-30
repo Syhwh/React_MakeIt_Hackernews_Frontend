@@ -11,6 +11,7 @@
     "react-fade-in": "^0.1.6",
     "react-fontawesome": "^1.6.1",
     "react-lottie": "^1.2.3",
+    "react-moment": "^0.9.6",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0"
   },

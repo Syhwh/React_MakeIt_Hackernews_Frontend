@@ -9,12 +9,12 @@ export default function PostsComponent({ posts,  handleDelete}) {
     <Fragment>
       <Container>
         <Row>
-          {posts.map(({ _id, title, description, url, date }) =>
+          {posts.map(({ _id, title, article, url, date }) =>
             <PostCardComponent
               key={_id}
               id={_id} 
               title={title} 
-              description={description} 
+              article={article} 
               date={date}
               url={url}              
               handleDelete={handleDelete}

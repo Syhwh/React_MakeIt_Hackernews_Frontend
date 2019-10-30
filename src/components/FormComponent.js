@@ -1,8 +1,10 @@
 import React from 'react';
+import{Redirect} from 'react-router-dom'
 import { Form, Button, Card } from 'react-bootstrap'
 
-export default ({ handleOnChange, handleSubmit, post }) => {
+export default ({ handleOnChange, handleSubmit, post,redirect }) => {
   return (
+    <>
     <Card style={{ width: '25rem' }}  >
       <Card.Body>
         <Card.Title>Create a New Post</Card.Title>
@@ -37,5 +39,7 @@ export default ({ handleOnChange, handleSubmit, post }) => {
         </Form>
       </Card.Body>
     </Card>
+   { redirect && <Redirect to='/posts'/>}
+   </>
   )
 }
