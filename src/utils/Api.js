@@ -7,7 +7,6 @@ class Api extends React.Component {
     loading: false,
     error: null,
   }
-
   async componentDidMount() {
     this.setState({
       loading: true

@@ -5,9 +5,9 @@ import Loading from '../components/LoadingComponent';
 import Error from '../components/ErrorComponent';
 import PostsComponent from '../components/PostsComponent';
 import Api from '../utils/Api';
-export default class PostsPage extends React.Component {
 
-   
+
+export default class PostsPage extends React.Component {   
   render() {
     return (  
         <Api endpoint={'/'} >
