@@ -1,28 +1,16 @@
- import React from 'react';
- import { Container, Row, Col } from 'react-bootstrap'
- import SignUpFormComponent from '../components/SignUpFormComponent';
- import Api from '../utils/Api';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap'
+import SignUpFormComponent from '../components/SignUpFormComponent';
 
- export default function SignUpPage() {
-    return (
-      <div >
-        <Api>
-      {({handleOnChangeUserSignUp,userData,handleSubmitUserSignUp,redirect})=>{ 
-        return(
-          <Container >
-            <Row>
-              <Col>
-                <SignUpFormComponent
-                  handleOnChange={handleOnChangeUserSignUp}
-                  user={userData}
-                  handleSubmit={handleSubmitUserSignUp} 
-                  redirect={redirect}/>
-              </Col>
-            </Row>
-          </Container>
-        )
-      }}
-        </Api>
-      </div>
-    );
-  }
+
+export default function SignUpPage() {
+  return (
+    <Container >
+      <Row>
+        <Col>
+          <SignUpFormComponent />
+        </Col>
+      </Row>
+    </Container>
+  );
+}

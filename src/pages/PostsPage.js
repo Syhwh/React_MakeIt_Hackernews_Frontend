@@ -5,20 +5,19 @@ import Loading from '../components/LoadingComponent';
 import Error from '../components/ErrorComponent';
 import PostsComponent from '../components/PostsComponent';
 import Api from '../utils/Api';
-
-
 export default class PostsPage extends React.Component {
+
    
   render() {
     return (  
         <Api endpoint={'/'} >
-          {({ data, loading, error,handleEdit,handleDelete }) => {
+          {({ data, loading, error}) => {
             if (loading) return <Loading />
             if (error) return <Error />
             return (
               <>
               <h2> Popular POSTS</h2>
-               {data.length > 0 && <PostsComponent posts={data} handleEdit={handleEdit} handleDelete={handleDelete}/>}
+               {data.length > 0 && <PostsComponent posts={data} />}
               </>
             )
           }}

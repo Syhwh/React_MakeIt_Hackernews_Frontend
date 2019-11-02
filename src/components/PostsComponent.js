@@ -3,8 +3,8 @@ import { Container, Row } from 'react-bootstrap';
 import PostCardComponent from './PostCardComponent';
 
 
-export default function PostsComponent({ posts,  handleDelete}) {  
-  
+export default function PostsComponent({ posts, handleDelete }) {
+
   return (
     <Fragment>
       <Container>
@@ -12,13 +12,12 @@ export default function PostsComponent({ posts,  handleDelete}) {
           {posts.map(({ _id, title, article, url, date }) =>
             <PostCardComponent
               key={_id}
-              id={_id} 
-              title={title} 
-              article={article} 
+              id={_id}
+              title={title}
+              article={article}
               date={date}
-              url={url}              
-              handleDelete={handleDelete}
-              />
+              url={url}
+            />
           )}
         </Row>
       </Container>

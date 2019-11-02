@@ -1,19 +1,16 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { ActionsOnPosts } from '../components/ActionsOnPosts';
 import { Card, Button, Col, Row } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
+import {VotesComponent} from '../components/VotesComponent'
 import Moment from 'react-moment';
 
-export default ({ id, title, article, url, date, handleDelete }) => {
+export default ({ id, title, article, url, date, }) => {
 
   return (
     <Card style={{ width: '35rem' }} className="bg-light" >
       <Card.Header>
         {title}   <Moment format="DD/MM/YYYY" >{date}</Moment>
-        <span onClick={() => handleDelete(id)}>
-          <FontAwesome name='trash' /> </span>
-        <Link to={`/edit/${id}`}>
-          <FontAwesome name='edit' /> </Link>
+        <ActionsOnPosts id={id} />
       </Card.Header>
       <Card.Body>
         <Row>
@@ -26,7 +23,7 @@ export default ({ id, title, article, url, date, handleDelete }) => {
               <p> <strong>Author:</strong>{article.author}  </p>
               <p>   <strong>Date:</strong>  <Moment format="DD-MM-YYYY" >{article.date}</Moment>   </p>
               <p>  <strong>Publisher:</strong>   {article.publisher}  </p>
-
+              <VotesComponent/>
             </Card.Text>
           </Col>
         </Row>

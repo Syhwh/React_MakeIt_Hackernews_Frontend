@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{useContext} from 'react';
+import {AuthContext} from '../store/AuthContext';
 import {Link} from 'react-router-dom';
 
 export default function NavigationComponent() {
+    const{handleLogout}=useContext(AuthContext);
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -27,6 +29,9 @@ export default function NavigationComponent() {
                         </li>
                         <li className="nav-item">
                             <Link className="nav-Link" to="/signup" >Signup</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-Link" onClick={handleLogout} >Logout</Link>
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
