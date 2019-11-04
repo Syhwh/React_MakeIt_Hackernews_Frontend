@@ -6,17 +6,18 @@ export const CommentContext = createContext();
 
 export function CommentProvider({ children }) {
   const [comments, setComments] = useState('')
+  const [edit, setEdit] = useState(false)
 
 
   async function postComments(comment) {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     try {
       const newComment = await hackerNewsApi.post('/comments', comment, {
         headers: {
           authorization: token
         }
       });
-      setComments(comments.concat(newComment.data))
+      setComments([newComment.data].concat(comments))
     } catch (error) {
       console.log(error)
     }
@@ -36,12 +37,51 @@ export function CommentProvider({ children }) {
     }
 
   }
-  function handleDeleteComment(id) {
-    console.log('Delete comment' + id)
+  async function handleDeleteComment(id) {
+    const token = localStorage.getItem('token')
+    try {
+      await hackerNewsApi.delete(`comments/${id}`, {
+        headers: {
+          authorization: token
+        }
+      })
+      setComments(comments.filter(({ _id }) => _id !== id))
+    } catch (error) {
+      console.log(error)
+    }
+
   }
-  function handleEditComment(id) {
-    console.log('Edit comment' + id)
+
+  function enableEdit() {
+    setEdit(!edit)
   }
+
+  async function handleEditComment({ id, comment }) {
+    const token = localStorage.getItem('token')
+    try {
+      await hackerNewsApi.patch(`/comments/${id}`, { comment }, {
+        headers: {
+          authorization: token
+        }
+      })
+      setComments(
+        comments.map((commentary) => {
+          if (commentary._id === id) {
+            commentary.comment = comment
+            commentary.date = Date.now()
+            commentary.edited = true
+            return commentary
+          } else {
+            return commentary
+          }
+        })
+      )
+      setEdit(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
     <CommentContext.Provider value={{
@@ -49,7 +89,9 @@ export function CommentProvider({ children }) {
       getComments,
       comments,
       handleDeleteComment,
-      handleEditComment
+      handleEditComment,
+      enableEdit,
+      edit
     }}>
       {children}
     </CommentContext.Provider>

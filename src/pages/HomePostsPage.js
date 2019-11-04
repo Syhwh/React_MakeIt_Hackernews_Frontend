@@ -17,8 +17,7 @@ export default function HomePostPage() {
     setState(false)
   }, [])
 
-  console.log(posts)
-  console.log(loading)
+
   if (loading) return <Loading />
   // if (error) return <Error />
   return (

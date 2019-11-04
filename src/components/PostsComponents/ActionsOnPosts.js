@@ -8,7 +8,6 @@ export function ActionsOnPosts({ id }) {
   return (
     <>
       <span onClick={() => handleDeletePost(id)} ><FontAwesome name='trash' /></span>
-      <Link to={`/edit/${id}`}><FontAwesome name='edit' /></Link>
     </>
   )
 }

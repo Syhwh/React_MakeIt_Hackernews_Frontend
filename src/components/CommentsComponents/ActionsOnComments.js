@@ -1,16 +1,14 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { CommentContext } from '../../store/PostsContext';
+import { CommentContext } from '../../store/CommentsContext';
 import FontAwesome from 'react-fontawesome';
 
-export function ActionsOnComments({ id }) {
-    const { handleDeleteComment, handleEditComment } = useContext(CommentContext)
-    return (
-        <>
-            <span onClick={() => handleDeleteComment(id)} ><FontAwesome name='trash' /></span>
-            <span onClick={() => handleEditComment(id)} ><FontAwesome name='edit' /></span>
 
-
-        </>
-    )
+export function ActionsOnComments({ id, enableEdit }) {
+  const { handleDeleteComment } = useContext(CommentContext)
+  return (
+    <>
+      <span onClick={() => handleDeleteComment(id)} ><FontAwesome name='trash' /></span>
+      <span onClick={() => enableEdit()} ><FontAwesome name='edit' /></span>
+    </>
+  )
 }

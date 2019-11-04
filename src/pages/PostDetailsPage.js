@@ -20,8 +20,7 @@ export default function PostDetailsPage(props) {
       setLoading(false)
     }
     fetchingData()
-  }, [])
-  console.log(postDetails)
+  }, []);
 
   if (loading) return <Loading />
   const { _id, title, article, url, date, postedBy, votes } = postDetails
@@ -30,20 +29,18 @@ export default function PostDetailsPage(props) {
       <Container>
         <Row>
           <h1> {postDetails.title} Post Details</h1>
-       
         </Row>
         <Row>
-
-        <PostDetailsCardComponent
-          _id={_id}
-          title={title}
-          article={article}
-          url={url}
-          date={date}
-          postedBy={postedBy}
-          votes={votes}
+          <PostDetailsCardComponent
+            _id={_id}
+            title={title}
+            article={article}
+            url={url}
+            date={date}
+            postedBy={postedBy}
+            votes={votes}
           />
-          </Row>
+        </Row>
         <ShowCommentsComponent comments={comments} />
         <CommentsFormComponent id={postId} />
 

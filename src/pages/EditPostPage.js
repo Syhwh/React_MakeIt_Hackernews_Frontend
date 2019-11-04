@@ -42,8 +42,8 @@ export default class EditPostPage extends Component {
     }
   };
 
-  
-  render() {    
+
+  render() {
     return (
       <div >
         <Container >
