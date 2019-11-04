@@ -1,12 +1,13 @@
 import React from 'react';
 import { Button, Badge } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-export function VotesComponent() {
+export function VotesComponent({votes}) {
     return (
         <div>
             <Button variant="secondary" >
-            <strong>  <FontAwesome name='thumbs-up' /></strong>   <Badge pill variant="light">9</Badge> 
-              </Button>
+            <FontAwesome name='thumbs-up' /> <strong> Vote </strong> 
+           
+            </Button>
         </div>
     )
 

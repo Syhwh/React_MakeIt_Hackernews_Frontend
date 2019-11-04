@@ -6,15 +6,13 @@ export const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
   // define state hooks
-  const [user, setUser] = useState(0);
+  const [user, setUser] = useState(false);
   const history = useHistory()
+
   //hooks first time run
-
   useEffect(() => {
-    const token = localStorage.getItem('token')
-
+    const token = localStorage.getItem('token');
     if (!token) return history.push('/');
-
     hackerNewsApi.post('/verify', null, {
       headers: {
         authorization: token
@@ -48,7 +46,12 @@ export function AuthProvider({ children }) {
 
 
   function handleLogout() {
-    hackerNewsApi.post('/logout')
+    const token = localStorage.getItem('token')
+    hackerNewsApi.post('/logout', null, {
+      headers: {
+        authorization: token
+      }
+    })
       .then(() => {
         localStorage.removeItem('token');
         setUser(0)

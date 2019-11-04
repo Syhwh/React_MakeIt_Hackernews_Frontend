@@ -1,21 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../store/AuthContext';
 import { PostContext } from '../store/PostsContext';
-import PostsComponent from '../components/PostsComponent';
+import ShowPostsComponent from '../components/PostsComponents/ShowPostsComponent';
 
 export default function UserPostPages() {
     const { user } = useContext(AuthContext)
-    const { post, getUserPosts } = useContext(PostContext);
+    const { userPosts, getUserPosts } = useContext(PostContext);
 
     useEffect(() => {
-     console.log(user)  
-     getUserPosts(user)
-    },[])
-console.log(post)
+        getUserPosts(user)
+    }, [])
+
     return (
         <>
-            <h2> Popular POSTS</h2>
-            {post.length > 0 && <PostsComponent posts={post} />}
+            <h2> Personal POSTS</h2>
+            {userPosts.length > 0 && <ShowPostsComponent posts={userPosts} showActions={true} />}
         </>
     )
 }

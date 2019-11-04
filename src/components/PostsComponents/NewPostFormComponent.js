@@ -1,5 +1,5 @@
 import React, { useReducer, useContext } from 'react';
-import { PostContext } from '../store/PostsContext';
+import { PostContext } from '../../store/PostsContext';
 import { Form, Button, Card } from 'react-bootstrap';
 
 const SET_TITLE = 'SET_TITLE';

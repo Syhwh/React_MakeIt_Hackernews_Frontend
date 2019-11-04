@@ -5,7 +5,10 @@ import hackerNewsApi from '../utils/ApiConfiguration'
 export const PostContext = createContext();
 
 export function PostProvider({ children }) {
-  const [post, setPost] = useState('')
+  const [posts, setPost] = useState('');
+  const [userPosts, setUserPosts] = useState('');
+  const [postDetails, setPostDetails] = useState('');
+
   const history = useHistory();
   const token = localStorage.getItem('token');
 
@@ -26,19 +29,21 @@ export function PostProvider({ children }) {
   async function handleDeletePost(id) {
     try {
       console.log('ok' + id)
-      // await hackerNewsApi.delete(`/posts/${id}`)
-      // this.setState(state => {
-      //   return { data: state.data.filter(e => e._id !== id) }
-      // })
+      await hackerNewsApi.delete(`/posts/${id}`, {
+        headers: {
+          authorization: token
+        }
+      });
+      setPost(posts.filter(e => e._id !== id))
     } catch (error) {
       console.log(error)
     }
   };
 
 
-  async function getUserPosts(id) {
+  async function getPosts() {
     try {
-      const posts = await hackerNewsApi.get(`/posts/${id}`)
+      const posts = await hackerNewsApi.get('/');
       setPost(posts.data)
     }
     catch (error) {
@@ -47,13 +52,47 @@ export function PostProvider({ children }) {
 
   }
 
+  async function getUserPosts(id) {
+    try {
+      const { data } = await hackerNewsApi.get(`/posts/${id}`, {
+        headers: {
+          authorization: token
+        }
+      })
+      console.log(data)
+      setUserPosts(data)
+    }
+    catch (error) {
+      console.log(error)
+    }
+
+  }
+  async function getPostsDetails(id) {
+    try {
+      const { data } = await hackerNewsApi.get(`/details/${id}`, {
+        headers: {
+          authorization: token
+        }
+      });
+      setPostDetails(data.post)
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+
   return (
     <PostContext.Provider value={
       {
-        post,
+        posts,
+        userPosts,
         handlePostSubmitForm,
         handleDeletePost,
-        getUserPosts
+        getPosts,
+        getUserPosts,
+        getPostsDetails,
+        postDetails
       }
     }>
       {children}

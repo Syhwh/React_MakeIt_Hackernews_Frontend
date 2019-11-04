@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
-import SignUpFormComponent from '../components/SignUpFormComponent';
+import SignUpFormComponent from '../components/UserComponents/SignUpFormComponent';
 
 
 export default function SignUpPage() {

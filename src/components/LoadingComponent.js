@@ -13,7 +13,7 @@ const defaultOptions = {
     }
 };
 
-export default class Error extends React.Component {
+export default class Loading extends React.Component {
     render() {
         return (
             <FadeIn>
