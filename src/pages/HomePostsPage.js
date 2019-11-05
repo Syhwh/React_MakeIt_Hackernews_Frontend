@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PostContext } from '../store/PostsContext';
-
+import { Container, Row, Col } from 'react-bootstrap'
 //import components
 import Loading from '../components/LoadingComponent';
 import Error from '../components/ErrorComponent';
@@ -22,11 +22,14 @@ export default function HomePostPage() {
   // if (error) return <Error />
   return (
     <>
-      <h2> Popular POSTS</h2>
-      {posts.length > 0 && <ShowPostsComponent posts={posts} />}
-    
-      
-      </>
+      <Container>
+        <Row className="justify-content-md-center mt-4">
+          <h2> Popular POSTS</h2>
+          {posts.length > 0 && <ShowPostsComponent posts={posts} />}
+        </Row>
+      </Container>
+
+    </>
 
 
   )

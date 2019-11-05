@@ -35,6 +35,7 @@ export function PostProvider({ children }) {
         }
       });
       setPost(posts.filter(e => e._id !== id))
+      setUserPosts(posts.filter(e => e._id !== id))
     } catch (error) {
       console.log(error)
     }

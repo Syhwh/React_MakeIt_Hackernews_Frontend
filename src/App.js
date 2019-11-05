@@ -15,7 +15,7 @@ import UserPostpage from './pages/UserPostPages';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 //Importing Css
-import './assets/bootstrap.min.css';
+//import './assets/bootstrap.min.css';
 
 import './App.css';
 class App extends React.Component {

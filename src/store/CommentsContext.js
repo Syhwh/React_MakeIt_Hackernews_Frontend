@@ -6,7 +6,7 @@ export const CommentContext = createContext();
 
 export function CommentProvider({ children }) {
   const [comments, setComments] = useState('')
-  const [edit, setEdit] = useState(false)
+  //  const [edit, setEdit] = useState(false)
 
 
   async function postComments(comment) {
@@ -52,9 +52,6 @@ export function CommentProvider({ children }) {
 
   }
 
-  function enableEdit() {
-    setEdit(!edit)
-  }
 
   async function handleEditComment({ id, comment }) {
     const token = localStorage.getItem('token')
@@ -76,7 +73,7 @@ export function CommentProvider({ children }) {
           }
         })
       )
-      setEdit(false)
+
     } catch (error) {
       console.log(error)
     }
@@ -90,8 +87,7 @@ export function CommentProvider({ children }) {
       comments,
       handleDeleteComment,
       handleEditComment,
-      enableEdit,
-      edit
+
     }}>
       {children}
     </CommentContext.Provider>

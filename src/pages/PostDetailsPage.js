@@ -1,17 +1,21 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { PostContext } from '../store/PostsContext';
 import { CommentContext } from '../store/CommentsContext';
-import { Container, Row, Col } from 'react-bootstrap'
-import Loading from '../components/LoadingComponent'
+import { AuthContext } from '../store/AuthContext';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import Loading from '../components/LoadingComponent';
 import CommentsFormComponent from '../components/CommentsComponents/CommentsFormComponent';
 import ShowCommentsComponent from '../components/CommentsComponents/ShowCommentsComponent';
 import PostDetailsCardComponent from '../components/PostsComponents/PostDetailsCardComponent';
 
 
+
 export default function PostDetailsPage(props) {
-  const [loading, setLoading] = useState(true)
-  const { getPostsDetails, postDetails } = useContext(PostContext)
+  const [loading, setLoading] = useState(true);
+  const { getPostsDetails, postDetails } = useContext(PostContext);
   const { comments, getComments } = useContext(CommentContext);
+  const { user } = useContext(AuthContext);
   const postId = props.match.params.handle;
   useEffect(() => {
     async function fetchingData() {
@@ -26,11 +30,11 @@ export default function PostDetailsPage(props) {
   const { _id, title, article, url, date, postedBy, votes } = postDetails
   return (
     <>
-      <Container>
-        <Row>
-          <h1> {postDetails.title} Post Details</h1>
+      <Container >
+        <Row className="justify-content-md-center mt-4">
+          <h2> {postDetails.title} Post Details</h2>
         </Row>
-        <Row>
+        <Row className="justify-content-md-center mt-4">
           <PostDetailsCardComponent
             _id={_id}
             title={title}
@@ -38,11 +42,28 @@ export default function PostDetailsPage(props) {
             url={url}
             date={date}
             postedBy={postedBy}
-            votes={votes}
+            votes={votes.length}
           />
         </Row>
-        <ShowCommentsComponent comments={comments} />
-        <CommentsFormComponent id={postId} />
+        <Row className="justify-content-md-center mt-4">
+          <Card style={{ width: '50rem' }} className="bg-light" >
+            <Card.Header>
+              <h4>Comments</h4>
+            </Card.Header>
+            <Card.Text>
+              <ShowCommentsComponent comments={comments} />
+            </Card.Text>
+            <Card.Footer>
+              {user ? <CommentsFormComponent id={postId} /> :
+                <>
+                  <h5> “You must be logged in to post a comment.” <span><Link to='/login' >Login</Link> </span> </h5>
+
+                </>
+              }
+            </Card.Footer>
+          </Card>
+
+        </Row>
 
       </Container>
     </>

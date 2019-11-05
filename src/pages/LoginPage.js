@@ -7,10 +7,8 @@ export default function LoginPage() {
   return (
 
     <Container>
-      <Row>
-        <Col>
-          <LoginFormComponent />
-        </Col>
+      <Row className="justify-content-md-center mt-4">
+        <LoginFormComponent />
       </Row>
     </Container>
 

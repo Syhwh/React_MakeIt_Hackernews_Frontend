@@ -1,4 +1,5 @@
 import React, { useReducer, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../store/AuthContext';
 import { Form, Button, Card } from 'react-bootstrap'
 
@@ -73,6 +74,7 @@ export default function LoginUserForm() {
                 onChange={handleOnChange} />
             </Form.Group>
             <Button type='submit'>Submit</Button>
+            <div>Doesn't have an account? <Link to='/signUp'>SignUp</Link> </div>
           </Form>
         </Card.Body>
       </Card>

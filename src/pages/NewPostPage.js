@@ -6,10 +6,8 @@ import NewPostFormComponent from '../components/PostsComponents/NewPostFormCompo
 export default function NewPostPage() {
   return (
     <Container >
-      <Row>
-        <Col>
-          <NewPostFormComponent />
-        </Col>
+      <Row className="justify-content-md-center mt-4">
+        <NewPostFormComponent />
       </Row>
     </Container>
 

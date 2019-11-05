@@ -1,4 +1,5 @@
 import React, { useReducer, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../store/AuthContext';
 import { Form, Button, Card } from 'react-bootstrap';
 
@@ -52,7 +53,7 @@ const actions = {
 export default function UserSignUp() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { handleSubmitUserSignUpForm } = useContext(AuthContext)
-  
+
   function handleOnChange(e) {
     const { name, value } = e.target;
     dispatch({
@@ -109,6 +110,8 @@ export default function UserSignUp() {
                 onChange={handleOnChange} />
             </Form.Group>
             <Button type='submit'>Submit</Button>
+            <div>Already have an account? <Link to='/login'>Login</Link> </div>
+
           </Form>
         </Card.Body>
       </Card>

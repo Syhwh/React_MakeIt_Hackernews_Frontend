@@ -5,7 +5,7 @@ import { Container, Col, Row, Form } from 'react-bootstrap';
 export default function EditCommentFormComponent({ id, comment, disableEdit }) {
 
   const [state, setState] = useState({ comment })
-  const { handleEditComment, enableEdit } = useContext(CommentContext)
+  const { handleEditComment } = useContext(CommentContext)
 
   function handleOnChange(e) {
     const { value } = e.target
@@ -48,8 +48,8 @@ export default function EditCommentFormComponent({ id, comment, disableEdit }) {
               ></textarea>
             </Form.Group>
             <button type='submit' className='btn btn-success'>Save</button>
+            <button onClick={disableEdit} className='btn btn-success'>Cancel</button>
           </Form>
-          <button onClick={enableEdit} className='btn btn-success'>Cancel</button>
         </div>
       </div>
     </Container>

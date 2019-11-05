@@ -38,7 +38,7 @@ export default function CommentsFormComponent({ id }) {
             <Form.Group>
               <textarea
                 onChange={handleOnChange}
-                cols='50'
+                cols='90'
                 type="text"
                 value={state.comment}
                 name="comment"

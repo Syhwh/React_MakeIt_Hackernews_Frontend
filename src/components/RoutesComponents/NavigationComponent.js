@@ -1,43 +1,53 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../store/AuthContext';
 import { Link } from 'react-router-dom';
+import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 
 export default function NavigationComponent() {
   const { handleLogout, user } = useContext(AuthContext);
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <Link className="navbar-brand" to="/">Hacker News</Link>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto ">
-            <li className="nav-item active">
-              <Link className="nav-Link" to="/">Home <span className="sr-only">(current)</span></Link>
-            </li>
-            <li className="nav-item">
-              <Link to='/userPosts' className="nav-Link" >My Posts </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-Link" to="/newPost"  >New Post</Link>
-            </li>
-            {!user && <> <li className="nav-item">
-              <Link className="nav-Link" to="/login" >Login</Link>
-            </li>
-              <li className="nav-item">
-                <Link className="nav-Link" to="/signup" >Signup</Link>
-              </li> </>}
-            {user ? <li className="nav-item">
-              <Link className="nav-Link" onClick={handleLogout} >Logout</Link>
-            </li> : null}
-          </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
-    </div>
+
+    <Navbar bg="light" expand="lg" >
+      <Navbar.Brand>
+        <Link to="/"><h4>Hacker News</h4> </Link>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link>
+            <Link to="/">Home</Link>
+          </Nav.Link>
+          <Nav.Link >
+            <Link to='/userPosts'>My Posts</Link>
+          </Nav.Link>
+          <Nav.Link >
+            <Link to="/newPost"  >New Post</Link>
+          </Nav.Link>
+
+          {!user && <>
+            <Nav.Link >
+              <Link to="/login" >Login</Link>
+            </Nav.Link>
+            <Nav.Link >
+              <Link to="/signup"  >Sign Up</Link>
+            </Nav.Link>
+          </>}
+          {user ? <Nav.Link >
+            <Link className="nav-Link" onClick={handleLogout} >Logout</Link>
+          </Nav.Link> : null}
+
+        </Nav>
+        <Form inline>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <Button variant="outline-success">Search</Button>
+        </Form>
+      </Navbar.Collapse>
+    </Navbar >
+
+
+
+
+
+
   )
 }

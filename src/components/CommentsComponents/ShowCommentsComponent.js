@@ -8,8 +8,6 @@ export default function ShowCommentsComponent({ comments }) {
 
   return (
     <>
-      <h1>Comments</h1>
-      <div className="comments-container">
         <ul id="comments-list" className="comments-list">
           {comments.length > 0 ? comments.map(({ _id, userName, comment, date, userId, edited }) =>
             <CommentDisplayComponent
@@ -21,10 +19,10 @@ export default function ShowCommentsComponent({ comments }) {
               userId={userId}
               edited={edited}
             />) :
-            <h2>No comments yet, be the first</h2>
+            <h4>No comments yet, be the first</h4>
           }
         </ul>
-      </div>
+    
     </>
   )
 

@@ -9,7 +9,7 @@ export default function PostsComponent({ posts, showActions }) {
   return (
     <Fragment>
       <Container>
-        <Row>
+        <Row className="justify-content-md-center">
           {posts.length > 0 && posts.map(({ _id, title, article, url, date, postedBy, votes }) =>
             <PostCardComponent
               key={_id}
@@ -19,7 +19,7 @@ export default function PostsComponent({ posts, showActions }) {
               date={date}
               url={url}
               postedBy={postedBy}
-              votes={votes}
+              votes={votes.length}
               showActions={showActions}
             />
           )}

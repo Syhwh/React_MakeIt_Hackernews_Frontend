@@ -6,10 +6,10 @@ import SignUpFormComponent from '../components/UserComponents/SignUpFormComponen
 export default function SignUpPage() {
   return (
     <Container >
-      <Row>
-        <Col>
-          <SignUpFormComponent />
-        </Col>
+      <Row className="justify-content-md-center mt-4">
+
+        <SignUpFormComponent />
+
       </Row>
     </Container>
   );
